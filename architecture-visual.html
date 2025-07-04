@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サーバーワークス Webサイト アーキテクチャ図</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #FF4500;
+            margin-bottom: 30px;
+        }
+        .architecture-svg {
+            width: 100%;
+            height: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f8f9fa;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>サーバーワークス コーポレートWebサイト<br>システムアーキテクチャ</h1>
+        
+        <!-- メインアーキテクチャ図 -->
+        <svg class="architecture-svg" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+            <!-- 背景グラデーション -->
+            <defs>
+                <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#FF4500;stop-opacity:0.1" />
+                    <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:0.1" />
+                </linearGradient>
+                
+                <!-- 各レイヤーのグラデーション -->
+                <linearGradient id="clientGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#e1f5fe" />
+                    <stop offset="100%" style="stop-color:#b3e5fc" />
+                </linearGradient>
+                
+                <linearGradient id="cdnGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#f3e5f5" />
+                    <stop offset="100%" style="stop-color:#e1bee7" />
+                </linearGradient>
+                
+                <linearGradient id="serverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#e8f5e8" />
+                    <stop offset="100%" style="stop-color:#c8e6c9" />
+                </linearGradient>
+                
+                <linearGradient id="appGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#fff3e0" />
+                    <stop offset="100%" style="stop-color:#ffcc02" />
+                </linearGradient>
+                
+                <linearGradient id="assetGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#fce4ec" />
+                    <stop offset="100%" style="stop-color:#f8bbd9" />
+                </linearGradient>
+            </defs>
+            
+            <!-- 背景 -->
+            <rect width="1000" height="700" fill="url(#bgGradient)" />
+            
+            <!-- Client Layer -->
+            <g id="clientLayer">
+                <rect x="50" y="50" width="200" height="120" rx="10" fill="url(#clientGradient)" stroke="#0277bd" stroke-width="2"/>
+                <text x="150" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#0277bd">Client Layer</text>
+                
+                <rect x="60" y="90" width="60" height="30" rx="5" fill="white" stroke="#0277bd"/>
+                <text x="90" y="108" text-anchor="middle" font-size="10" fill="#0277bd">Desktop</text>
+                
+                <rect x="130" y="90" width="50" height="30" rx="5" fill="white" stroke="#0277bd"/>
+                <text x="155" y="108" text-anchor="middle" font-size="10" fill="#0277bd">Mobile</text>
+                
+                <rect x="190" y="90" width="50" height="30" rx="5" fill="white" stroke="#0277bd"/>
+                <text x="215" y="108" text-anchor="middle" font-size="10" fill="#0277bd">Tablet</text>
+            </g>
+            
+            <!-- CDN Layer -->
+            <g id="cdnLayer">
+                <rect x="300" y="50" width="180" height="120" rx="10" fill="url(#cdnGradient)" stroke="#7b1fa2" stroke-width="2"/>
+                <text x="390" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#7b1fa2">CDN Layer</text>
+                
+                <rect x="310" y="90" width="70" height="30" rx="5" fill="white" stroke="#7b1fa2"/>
+                <text x="345" y="108" text-anchor="middle" font-size="10" fill="#7b1fa2">Bootstrap</text>
+                
+                <rect x="390" y="90" width="80" height="30" rx="5" fill="white" stroke="#7b1fa2"/>
+                <text x="430" y="108" text-anchor="middle" font-size="10" fill="#7b1fa2">BS Icons</text>
+            </g>
+            
+            <!-- Web Server Layer -->
+            <g id="serverLayer">
+                <rect x="520" y="50" width="180" height="120" rx="10" fill="url(#serverGradient)" stroke="#388e3c" stroke-width="2"/>
+                <text x="610" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#388e3c">Web Server</text>
+                
+                <rect x="530" y="90" width="160" height="30" rx="5" fill="white" stroke="#388e3c"/>
+                <text x="610" y="100" text-anchor="middle" font-size="10" fill="#388e3c">Static Web Server</text>
+                <text x="610" y="115" text-anchor="middle" font-size="9" fill="#388e3c">Python HTTP Server</text>
+            </g>
+            
+            <!-- Application Layer -->
+            <g id="appLayer">
+                <rect x="50" y="220" width="300" height="180" rx="10" fill="url(#appGradient)" stroke="#f57c00" stroke-width="2"/>
+                <text x="200" y="245" text-anchor="middle" font-size="14" font-weight="bold" fill="#f57c00">Application Layer</text>
+                
+                <rect x="70" y="260" width="80" height="50" rx="5" fill="white" stroke="#f57c00"/>
+                <text x="110" y="280" text-anchor="middle" font-size="10" fill="#f57c00">HTML5</text>
+                <text x="110" y="295" text-anchor="middle" font-size="9" fill="#f57c00">index.html</text>
+                
+                <rect x="160" y="260" width="80" height="50" rx="5" fill="white" stroke="#f57c00"/>
+                <text x="200" y="280" text-anchor="middle" font-size="10" fill="#f57c00">TypeScript</text>
+                <text x="200" y="295" text-anchor="middle" font-size="9" fill="#f57c00">main.ts</text>
+                
+                <rect x="250" y="260" width="80" height="50" rx="5" fill="white" stroke="#f57c00"/>
+                <text x="290" y="280" text-anchor="middle" font-size="10" fill="#f57c00">CSS3</text>
+                <text x="290" y="295" text-anchor="middle" font-size="9" fill="#f57c00">style.css</text>
+                
+                <!-- Features -->
+                <rect x="70" y="330" width="260" height="60" rx="5" fill="rgba(255,255,255,0.8)" stroke="#f57c00"/>
+                <text x="200" y="350" text-anchor="middle" font-size="11" font-weight="bold" fill="#f57c00">主要機能</text>
+                <text x="200" y="365" text-anchor="middle" font-size="9" fill="#f57c00">• フォームバリデーション • スムーズスクロール</text>
+                <text x="200" y="378" text-anchor="middle" font-size="9" fill="#f57c00">• アニメーション効果 • レスポンシブデザイン</text>
+            </g>
+            
+            <!-- Asset Layer -->
+            <g id="assetLayer">
+                <rect x="400" y="220" width="250" height="180" rx="10" fill="url(#assetGradient)" stroke="#c2185b" stroke-width="2"/>
+                <text x="525" y="245" text-anchor="middle" font-size="14" font-weight="bold" fill="#c2185b">Asset Layer</text>
+                
+                <rect x="420" y="260" width="70" height="40" rx="5" fill="white" stroke="#c2185b"/>
+                <text x="455" y="275" text-anchor="middle" font-size="10" fill="#c2185b">Images</text>
+                <text x="455" y="290" text-anchor="middle" font-size="8" fill="#c2185b">Logo.webp</text>
+                
+                <rect x="500" y="260" width="70" height="40" rx="5" fill="white" stroke="#c2185b"/>
+                <text x="535" y="275" text-anchor="middle" font-size="10" fill="#c2185b">JavaScript</text>
+                <text x="535" y="290" text-anchor="middle" font-size="8" fill="#c2185b">main.js</text>
+                
+                <rect x="580" y="260" width="60" height="40" rx="5" fill="white" stroke="#c2185b"/>
+                <text x="610" y="275" text-anchor="middle" font-size="10" fill="#c2185b">Types</text>
+                <text x="610" y="290" text-anchor="middle" font-size="8" fill="#c2185b">main.d.ts</text>
+                
+                <!-- Build Process -->
+                <rect x="420" y="320" width="220" height="60" rx="5" fill="rgba(255,255,255,0.8)" stroke="#c2185b"/>
+                <text x="530" y="340" text-anchor="middle" font-size="11" font-weight="bold" fill="#c2185b">ビルドプロセス</text>
+                <text x="530" y="355" text-anchor="middle" font-size="9" fill="#c2185b">TypeScript → JavaScript コンパイル</text>
+                <text x="530" y="368" text-anchor="middle" font-size="9" fill="#c2185b">ソースマップ生成 • 型定義ファイル出力</text>
+            </g>
+            
+            <!-- Development Tools -->
+            <g id="devLayer">
+                <rect x="700" y="220" width="250" height="180" rx="10" fill="#f1f8e9" stroke="#689f38" stroke-width="2"/>
+                <text x="825" y="245" text-anchor="middle" font-size="14" font-weight="bold" fill="#689f38">Development Tools</text>
+                
+                <rect x="720" y="260" width="80" height="40" rx="5" fill="white" stroke="#689f38"/>
+                <text x="760" y="275" text-anchor="middle" font-size="10" fill="#689f38">TypeScript</text>
+                <text x="760" y="290" text-anchor="middle" font-size="8" fill="#689f38">Compiler</text>
+                
+                <rect x="810" y="260" width="60" height="40" rx="5" fill="white" stroke="#689f38"/>
+                <text x="840" y="275" text-anchor="middle" font-size="10" fill="#689f38">Git</text>
+                <text x="840" y="290" text-anchor="middle" font-size="8" fill="#689f38">VCS</text>
+                
+                <rect x="880" y="260" width="60" height="40" rx="5" fill="white" stroke="#689f38"/>
+                <text x="910" y="275" text-anchor="middle" font-size="10" fill="#689f38">GitHub</text>
+                <text x="910" y="290" text-anchor="middle" font-size="8" fill="#689f38">Remote</text>
+            </g>
+            
+            <!-- Data Flow Arrows -->
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#FF4500" />
+                </marker>
+            </defs>
+            
+            <!-- Client to Server -->
+            <line x1="250" y1="110" x2="520" y2="110" stroke="#FF4500" stroke-width="3" marker-end="url(#arrowhead)"/>
+            <text x="385" y="105" text-anchor="middle" font-size="10" fill="#FF4500" font-weight="bold">HTTP Request</text>
+            
+            <!-- Server to CDN -->
+            <line x1="520" y1="130" x2="480" y2="130" stroke="#FF6B35" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- Server to App -->
+            <line x1="610" y1="170" x2="350" y2="220" stroke="#FF8C00" stroke-width="3" marker-end="url(#arrowhead)"/>
+            <text x="480" y="190" text-anchor="middle" font-size="10" fill="#FF8C00" font-weight="bold">Serve Assets</text>
+            
+            <!-- App to Assets -->
+            <line x1="350" y1="300" x2="400" y2="300" stroke="#FFA366" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- Dev Tools to Assets -->
+            <line x1="700" y1="300" x2="650" y2="300" stroke="#689f38" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- Performance Metrics -->
+            <g id="metrics">
+                <rect x="50" y="450" width="900" height="200" rx="10" fill="rgba(255,255,255,0.9)" stroke="#FF4500" stroke-width="2"/>
+                <text x="500" y="475" text-anchor="middle" font-size="16" font-weight="bold" fill="#FF4500">パフォーマンス & 品質指標</text>
+                
+                <!-- Core Web Vitals -->
+                <rect x="80" y="490" width="250" height="80" rx="5" fill="#e8f5e8" stroke="#4caf50"/>
+                <text x="205" y="510" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">Core Web Vitals</text>
+                <text x="205" y="525" text-anchor="middle" font-size="10" fill="#4caf50">LCP < 2.5s | FID < 100ms</text>
+                <text x="205" y="540" text-anchor="middle" font-size="10" fill="#4caf50">CLS < 0.1 | 高速レスポンス</text>
+                <text x="205" y="555" text-anchor="middle" font-size="10" fill="#4caf50">モバイル最適化済み</text>
+                
+                <!-- Security -->
+                <rect x="350" y="490" width="250" height="80" rx="5" fill="#e3f2fd" stroke="#2196f3"/>
+                <text x="475" y="510" text-anchor="middle" font-size="12" font-weight="bold" fill="#2196f3">セキュリティ</text>
+                <text x="475" y="525" text-anchor="middle" font-size="10" fill="#2196f3">XSS対策 | 入力検証</text>
+                <text x="475" y="540" text-anchor="middle" font-size="10" fill="#2196f3">HTTPS対応 | CSP設定</text>
+                <text x="475" y="555" text-anchor="middle" font-size="10" fill="#2196f3">セキュアコーディング</text>
+                
+                <!-- Accessibility -->
+                <rect x="620" y="490" width="250" height="80" rx="5" fill="#fff3e0" stroke="#ff9800"/>
+                <text x="745" y="510" text-anchor="middle" font-size="12" font-weight="bold" fill="#ff9800">アクセシビリティ</text>
+                <text x="745" y="525" text-anchor="middle" font-size="10" fill="#ff9800">セマンティックHTML</text>
+                <text x="745" y="540" text-anchor="middle" font-size="10" fill="#ff9800">ARIA対応 | キーボード操作</text>
+                <text x="745" y="555" text-anchor="middle" font-size="10" fill="#ff9800">カラーコントラスト適合</text>
+                
+                <!-- Technology Stack -->
+                <rect x="80" y="580" width="790" height="50" rx="5" fill="#fce4ec" stroke="#e91e63"/>
+                <text x="475" y="600" text-anchor="middle" font-size="12" font-weight="bold" fill="#e91e63">技術スタック</text>
+                <text x="475" y="615" text-anchor="middle" font-size="10" fill="#e91e63">HTML5 + TypeScript + CSS3 + Bootstrap 5.3.2 + Git + GitHub</text>
+            </g>
+        </svg>
+        
+        <!-- 凡例 -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #e1f5fe, #b3e5fc);"></div>
+                <span><strong>Client Layer:</strong> ユーザーデバイス（デスクトップ・モバイル・タブレット）</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #f3e5f5, #e1bee7);"></div>
+                <span><strong>CDN Layer:</strong> Bootstrap・アイコンライブラリの配信</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #e8f5e8, #c8e6c9);"></div>
+                <span><strong>Web Server:</strong> 静的ファイル配信サーバー</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #fff3e0, #ffcc02);"></div>
+                <span><strong>Application Layer:</strong> HTML・TypeScript・CSS アプリケーション</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #fce4ec, #f8bbd9);"></div>
+                <span><strong>Asset Layer:</strong> 画像・コンパイル済みJS・型定義ファイル</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #f1f8e9;"></div>
+                <span><strong>Development Tools:</strong> TypeScriptコンパイラ・Git・GitHub</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
